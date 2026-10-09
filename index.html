@@ -1,258 +1,423 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pankaj Yadav | Software Engineer</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Pankaj Yadav — Software Engineer working across backend systems, Go, Java, CI/CD, Jenkins, and cloud-native platforms.">
+  <title>Pankaj Yadav | Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111c2e;
+      --surface-2: #142238;
+      --text: #edf3fc;
+      --muted: #a8b7cb;
+      --accent: #65d6c4;
+      --accent-2: #7ca8ff;
+      --line: rgba(185, 205, 232, .15);
+      --max: 1100px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body {
+      margin: 0; color: var(--text); background: var(--bg);
+      font-family: "DM Sans", sans-serif; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--accent); outline-offset: 3px;
+    }
+    .container { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line);
+      background: rgba(11, 18, 32, .88); backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font: 800 1.05rem "Manrope", sans-serif; letter-spacing: -.04em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 26px; margin: 0; padding: 0; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .88rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-toggle { display: none; color: var(--text); border: 1px solid var(--line); background: var(--surface); padding: 8px 12px; border-radius: 10px; }
+    .hero {
+      position: relative; overflow: hidden; padding: 112px 0 104px;
+      background: radial-gradient(ellipse at 80% 15%, rgba(124,168,255,.18), transparent 34%),
+                  radial-gradient(ellipse at 20% 75%, rgba(101,214,196,.12), transparent 36%),
+                  linear-gradient(135deg, #0b1220 0%, #101d31 60%, #0b1220 100%);
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 480px; height: 480px; border: 1px solid rgba(101,214,196,.12);
+      border-radius: 50%; right: -180px; bottom: -320px; box-shadow: 0 0 0 55px rgba(101,214,196,.025), 0 0 0 110px rgba(101,214,196,.02);
+      pointer-events: none;
+    }
+    .eyebrow { color: var(--accent); font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: "Manrope", sans-serif; }
+    h1 { max-width: 780px; margin: 16px 0 16px; font-size: clamp(2.7rem, 7vw, 5.3rem); line-height: 1.04; letter-spacing: -.065em; }
+    .hero h1 span { color: var(--accent); }
+    .hero-subtitle { max-width: 700px; margin-bottom: 28px; color: #c1cee0; font-size: clamp(1.05rem, 2vw, 1.32rem); }
+    .hero-note { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 34px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; color: #d2deed; background: rgba(255,255,255,.035); font-size: .82rem; }
+    .pill-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 18px; border-radius: 10px; font-weight: 700; font-size: .9rem; transition: transform .2s, background .2s, border-color .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: #07151a; background: var(--accent); }
+    .button-primary:hover { background: #86e7d8; }
+    .button-secondary { border: 1px solid rgba(213,228,246,.25); color: var(--text); background: rgba(255,255,255,.025); }
+    .button-secondary:hover { border-color: var(--accent); }
+    section { padding: 84px 0; }
+    .section-head { max-width: 680px; margin-bottom: 36px; }
+    .section-head h2 { margin: 9px 0 10px; font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: -.045em; }
+    .section-head p { margin-bottom: 0; color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
+    .about-callout { border-left: 2px solid var(--accent); padding: 4px 0 4px 22px; color: #d4dfed; font-size: 1.1rem; }
+    .about-copy p { color: var(--muted); }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 26px; }
+    .stat { border: 1px solid var(--line); background: rgba(255,255,255,.025); border-radius: 13px; padding: 16px; }
+    .stat strong { display: block; font: 800 1.4rem "Manrope", sans-serif; color: var(--accent); }
+    .stat span { color: var(--muted); font-size: .78rem; }
+    .section-alt { background: #0e1828; border-top: 1px solid rgba(255,255,255,.025); border-bottom: 1px solid rgba(255,255,255,.025); }
+    .timeline { position: relative; max-width: 900px; margin-left: 4px; }
+    .timeline::before { content: ""; position: absolute; left: 9px; top: 8px; bottom: 14px; width: 1px; background: linear-gradient(var(--accent), rgba(101,214,196,.12)); }
+    .job { position: relative; padding: 0 0 30px 38px; }
+    .job:last-child { padding-bottom: 0; }
+    .job::before { content: ""; position: absolute; top: 7px; left: 3px; width: 13px; height: 13px; border: 2px solid var(--accent); border-radius: 50%; background: var(--bg); box-shadow: 0 0 0 5px rgba(101,214,196,.08); }
+    .job-card, .project-card, .skill-card, .education-card {
+      border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+    }
+    .job-card { padding: 22px 24px; }
+    .job-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+    .job h3 { margin: 0; font-size: 1.15rem; letter-spacing: -.02em; }
+    .job-role { color: var(--muted); margin-top: 2px; font-size: .9rem; }
+    .job-date { align-self: flex-start; border-radius: 999px; background: rgba(101,214,196,.09); color: var(--accent); padding: 5px 10px; font-size: .76rem; font-weight: 700; }
+    .job ul, .project-card ul { padding-left: 19px; margin: 0; color: #b8c7da; }
+    .job li, .project-card li { padding: 3px 0; }
+    .job li::marker, .project-card li::marker { color: var(--accent); }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .project-card { padding: 26px; display: flex; flex-direction: column; min-height: 100%; transition: transform .2s, border-color .2s; }
+    .project-card:hover { transform: translateY(-4px); border-color: rgba(101,214,196,.45); }
+    .project-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .project-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(101,214,196,.1); color: var(--accent); font-weight: 800; font-family: "Manrope", sans-serif; }
+    .project-label { color: var(--muted); font-size: .76rem; }
+    .project-card h3 { margin-bottom: 8px; font-size: 1.3rem; }
+    .project-card p { color: var(--muted); }
+    .project-card ul { margin: 3px 0 20px; font-size: .9rem; }
+    .tech-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 20px; }
+    .tech { padding: 4px 9px; border-radius: 7px; color: #c7d7e9; background: rgba(124,168,255,.09); font-size: .75rem; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: auto; padding-top: 8px; }
+    .text-link { color: var(--accent); font-weight: 700; font-size: .88rem; }
+    .text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .skill-card { padding: 22px; }
+    .skill-card h3 { font-size: 1rem; margin-bottom: 14px; }
+    .skill-card p { color: var(--muted); margin: 0; font-size: .9rem; }
+    .certifications { margin-top: 34px; }
+    .certifications h3 { font-size: 1.05rem; margin-bottom: 14px; }
+    .cert-list { display: flex; flex-wrap: wrap; gap: 9px; }
+    .cert { border: 1px solid var(--line); border-radius: 9px; padding: 8px 12px; color: #c7d7e9; font-size: .83rem; background: rgba(255,255,255,.025); }
+    .education-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .education-card { padding: 24px; }
+    .education-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .education-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .education-date { display: inline-block; margin-top: 14px; color: var(--accent); font-size: .82rem; }
+    .contact-section { background: linear-gradient(135deg, #10253a, #0b1220 70%); }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+    .contact-details { display: grid; gap: 13px; margin-top: 26px; }
+    .contact-details a { color: #d9e5f3; overflow-wrap: anywhere; }
+    .contact-details a:hover { color: var(--accent); }
+    .contact-form { display: grid; gap: 13px; }
+    .contact-form input, .contact-form textarea { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; color: var(--text); background: rgba(255,255,255,.045); font: inherit; }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: #8fa2bb; }
+    .contact-form textarea { min-height: 145px; resize: vertical; }
+    .contact-form button { border: 0; cursor: pointer; justify-self: start; }
+    footer { padding: 24px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; color: var(--muted); font-size: .82rem; }
+    .social-links { display: flex; gap: 17px; }
+    .social-links a { color: #d4dfed; }
+    .social-links a:hover { color: var(--accent); }
+    .back-top { color: var(--accent); }
+    @media (max-width: 800px) {
+      .nav-links { gap: 15px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      section { padding: 66px 0; }
+      .hero { padding: 86px 0 80px; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 32px, var(--max)); }
+      .nav { min-height: 64px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 63px; left: 0; right: 0; padding: 12px 20px 18px; background: #0b1220; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 11px 4px; }
+      .hero { padding: 72px 0 68px; }
+      .hero-note { gap: 7px; }
+      .pill { font-size: .75rem; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .stat { padding: 12px 15px; }
+      .stat strong { display: inline-block; margin-right: 8px; }
+      .skills-grid, .education-grid { grid-template-columns: 1fr; }
+      .job { padding-left: 29px; }
+      .job-card { padding: 18px; }
+      .job-top { display: block; }
+      .job-date { display: inline-block; margin-top: 9px; }
+      .project-card { padding: 21px; }
+      .footer-inner { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="mobile-menu-open" class="shadow-large">
-        <i class="fa fa-bars" aria-hidden="true"></i>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Pankaj Yadav home">PY<span>.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="eyebrow">Software Engineer · Bengaluru, India</div>
+        <h1>I build backend systems.<br><span>I make delivery more reliable.</span></h1>
+        <p class="hero-subtitle">I’m Pankaj Yadav, a software engineer working with Go, Java, Jenkins, CI/CD, and cloud-native systems.</p>
+        <div class="hero-note">
+          <span class="pill"><span class="pill-dot"></span> CKAD Certified</span>
+          <span class="pill">Backend &amp; Distributed Systems</span>
+          <span class="pill">CI/CD &amp; Developer Tooling</span>
+        </div>
+        <div class="actions">
+          <a class="button button-primary" href="https://drive.google.com/file/d/10-bQz4L7LRCa1nQMp6NJyFHiRvSBoxIT/view?usp=sharing" target="_blank" rel="noopener noreferrer">View resume ↗</a>
+          <a class="button button-secondary" href="#projects">Explore projects</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="section-head">
+          <div class="eyebrow">A little about me</div>
+          <h2>What I work on</h2>
+          <p>Backend services, platform tooling, and ways to make everyday development easier.</p>
+        </div>
+        <div class="about-copy">
+          <p class="about-callout">I’m a Software Engineer at CloudBees. My work spans enterprise software, backend services, and CI/CD tooling.</p>
+          <p>I currently work on a Go-based SaaS platform for CI tooling and CD capabilities. I’ve also worked on Jenkins plugins, open-source projects, and FIPS verification.</p>
+          <p>I like working on performance, reliability, and developer productivity. At Oracle, caching improved API performance by about 90%, and better logging and diagnostics helped cut issue-resolution time. Outside my main work, I build tools to simplify repeatable development tasks.</p>
+          <div class="stat-grid">
+            <div class="stat"><strong>8+ years</strong><span>Software engineering experience</span></div>
+            <div class="stat"><strong>~90%</strong><span>API performance improvement</span></div>
+            <div class="stat"><strong>CKAD</strong><span>Kubernetes certification</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Career</div>
+          <h2>Professional experience</h2>
+          <p>My roles have covered enterprise applications, developer tools, and backend services.</p>
+        </div>
+        <div class="timeline">
+          <article class="job">
+            <div class="job-card">
+              <div class="job-top"><div><h3>CloudBees</h3><div class="job-role">Software Engineer</div></div><span class="job-date">April 2024 – Present</span></div>
+              <ul>
+                <li>Work on a Go-based SaaS platform for CI tooling and CD capabilities. The platform uses microservices, Protobuf, gRPC, and Kubernetes.</li>
+                <li>Develop and maintain Jenkins plugins, and contribute to related open-source projects.</li>
+                <li>Check plugin dependencies for security and compliance issues, including FIPS verification when upgrading versions.</li>
+                <li>Implement features, fix bugs, and investigate issues reported by customers.</li>
+                <li>Use AI coding tools where they help, and build reusable workflows for tasks that come up often.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="job">
+            <div class="job-card">
+              <div class="job-top"><div><h3>Oracle</h3><div class="job-role">Software Developer</div></div><span class="job-date">June 2019 – June 2023</span></div>
+              <ul>
+                <li>Improved API performance by approximately 90% through caching.</li>
+                <li>Used AI-assisted tools for feature delivery and unit-test generation, improving sprint velocity by 15% while maintaining 90% code coverage.</li>
+                <li>Refactored legacy modules to reduce technical debt, improve stability, and reduce Tier-3 support escalations.</li>
+                <li>Applied Test-Driven Development (TDD) to improve reliability and reduce debugging effort.</li>
+                <li>Enhanced logging and diagnostics, reducing issue-resolution time by 50–70%.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="job">
+            <div class="job-card">
+              <div class="job-top"><div><h3>Oracle</h3><div class="job-role">Software Intern</div></div><span class="job-date">June 2018 – May 2019</span></div>
+              <ul><li>Worked on defect fixes and bug resolution for enterprise software.</li></ul>
+            </div>
+          </article>
+          <article class="job">
+            <div class="job-card">
+              <div class="job-top"><div><h3>Aon Hewitt</h3><div class="job-role">Software Configuration Specialist</div></div><span class="job-date">August 2015 – August 2017</span></div>
+              <ul>
+                <li>Designed test plans and scenarios for software changes and tested system modifications before implementation.</li>
+                <li>Documented defects, tracked resolution progress, and collaborated with developers on timely fixes.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Selected work</div>
+          <h2>Projects</h2>
+          <p>A couple of projects I work on outside my main role.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-topline"><div class="project-icon">CC</div><span class="project-label">Developer tooling · CLI</span></div>
+            <h3>Claude Context Manager (cctx)</h3>
+            <p>A Go CLI I use to keep the context for each development ticket organized when working with AI coding tools.</p>
+            <div class="tech-list"><span class="tech">Go</span><span class="tech">Cobra</span><span class="tech">Claude Code</span><span class="tech">Jira MCP</span><span class="tech">Git</span></div>
+            <ul>
+              <li>Reads ticket IDs from Git branches and archives the related documents with one command.</li>
+              <li>Uses symlinks and a JSON config to keep one ticket connected to work across multiple repositories.</li>
+              <li>Includes commands to check and repair links, clean up stale data, preview changes, and archive work. It also has automated tests, embedded templates, and shell completions.</li>
+            </ul>
+            <div class="project-links"><a class="text-link" href="https://github.com/pankajy-dev/claude-context" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a></div>
+          </article>
+          <article class="project-card">
+            <div class="project-topline"><div class="project-icon">MS</div><span class="project-label">Learning project · Backend</span></div>
+            <h3>E-commerce Microservices Platform</h3>
+            <p>An e-commerce backend split into services for products, payments, authentication, notifications, API routing, and service discovery.</p>
+            <div class="tech-list"><span class="tech">Java</span><span class="tech">Spring Boot</span><span class="tech">Redis</span><span class="tech">Kafka</span><span class="tech">MySQL</span><span class="tech">Eureka</span></div>
+            <ul>
+              <li>Improved product-service performance by approximately 90% using Redis caching.</li>
+              <li>Integrated Apache Kafka for event-driven notification processing.</li>
+              <li>Kept the services in separate repositories.</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="https://github.com/pankaj-codes/ProductService" target="_blank" rel="noopener noreferrer">Product service ↗</a>
+              <a class="text-link" href="https://github.com/pankaj-codes/UserService" target="_blank" rel="noopener noreferrer">User service ↗</a>
+              <a class="text-link" href="https://github.com/pankaj-codes/PaymentService" target="_blank" rel="noopener noreferrer">Payment service ↗</a>
+              <a class="text-link" href="https://github.com/pankaj-codes/ApiGateway" target="_blank" rel="noopener noreferrer">API gateway ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Technical toolkit</div>
+          <h2>Skills</h2>
+          <p>Tools and technologies I use for backend development, platform work, testing, and CI/CD.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><h3>Languages</h3><p>Go, Java, Python, SQL, JavaScript</p></article>
+          <article class="skill-card"><h3>Core Java &amp; design</h3><p>OOP, SOLID, design patterns, multithreading, concurrency, JVM fundamentals</p></article>
+          <article class="skill-card"><h3>Backend &amp; APIs</h3><p>Microservices, REST, Spring Boot, Hibernate, gRPC, Protobuf, Maven</p></article>
+          <article class="skill-card"><h3>CI/CD &amp; cloud-native</h3><p>Jenkins, GitHub Actions, Docker, Kubernetes, Helm, OCI, Git</p></article>
+          <article class="skill-card"><h3>Data &amp; messaging</h3><p>Redis, Apache Kafka, MySQL</p></article>
+          <article class="skill-card"><h3>Testing &amp; quality</h3><p>JUnit 5, Mockito, SonarQube, Test-Driven Development</p></article>
+          <article class="skill-card"><h3>Security &amp; compliance</h3><p>FIPS verification, dependency security assessment</p></article>
+          <article class="skill-card"><h3>AI-assisted development</h3><p>Claude Code, reusable skills and workflows, context-management tooling</p></article>
+          <article class="skill-card"><h3>Machine learning · foundational</h3><p>Supervised learning, linear regression, model evaluation</p></article>
+        </div>
+        <div class="certifications">
+          <h3>Certifications</h3>
+          <div class="cert-list">
+            <span class="cert">Certified Kubernetes Application Developer (CKAD)</span>
+            <span class="cert">Oracle Cloud Infrastructure Architect Associate</span>
+            <span class="cert">Oracle Cloud Infrastructure Developer Associate</span>
+            <span class="cert">Oracle Cloud Infrastructure Foundations Associate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Academic background</div>
+          <h2>Education</h2>
+        </div>
+        <div class="education-grid">
+          <article class="education-card">
+            <h3>Master of Engineering, Software Engineering</h3>
+            <p>Thapar Institute of Engineering and Technology<br>Patiala, Punjab</p>
+            <span class="education-date">August 2017 – May 2019</span>
+          </article>
+          <article class="education-card">
+            <h3>B.Tech, Computer Science and Engineering</h3>
+            <p>Krishna Engineering College<br>Ghaziabad, Uttar Pradesh</p>
+            <span class="education-date">May 2011 – July 2015</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.045em;margin:9px 0 12px;">Let’s talk engineering.</h2>
+          <p style="color:var(--muted);">Contact me about engineering roles or technical collaboration.</p>
+          <div class="contact-details">
+            <a href="mailto:yadavpankaj28@gmail.com">yadavpankaj28@gmail.com</a>
+            <a href="tel:+919910897943">+91 99108 97943</a>
+            <a href="https://github.com/pankajy-dev" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/pankajy-dev/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+        <form class="contact-form" method="POST" action="https://formspree.io/f/xgegjqjb">
+          <label for="email">Your email</label>
+          <input id="email" type="email" name="_replyto" placeholder="you@example.com" autocomplete="email" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="What would you like to discuss?" required></textarea>
+          <button class="button button-primary" type="submit">Send message ↗</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="current-year"></span> Pankaj Yadav</span>
+      <div class="social-links"><a href="https://github.com/pankajy-dev" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/pankajy-dev/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+      <a class="back-top" href="#home">Back to top ↑</a>
     </div>
-    <header>
-        <div id="mobile-menu-close">
-            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
-        </div>
-        <ul id="menu" class="shadow">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </header>
-
-    <div id="lead">
-        <div id="lead-content">
-            <h1>Pankaj Yadav</h1>
-            <h2>Software Engineer | Backend &amp; CI/CD | CKAD Certified</h2>
-            <a href="https://drive.google.com/file/d/10-bQz4L7LRCa1nQMp6NJyFHiRvSBoxIT/view?usp=sharing" target="_blank" class="btn-rounded-white">Download Resume</a>
-        </div>
-        <div id="lead-overlay"></div>
-        <div id="lead-down">
-            <span><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-        </div>
-    </div>
-
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h2 class="heading">About Me</h2>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                        I am a <strong>Software Engineer at CloudBees</strong> with 8+ years of experience in backend development, enterprise software, and CI/CD tooling. I currently work on a <strong>Go-based SaaS platform</strong> for CI tooling and CD-related capabilities, after earlier work in Jenkins plugin engineering, open-source contributions, and FIPS verification.
-                    </p>
-                    <p>
-                        I focus on <strong>Java, microservices, API performance, and software reliability</strong>. At Oracle I improved API performance by roughly 90% through caching and cut issue resolution time through better diagnostics. I am <strong>CKAD certified</strong> and use AI-assisted tooling such as Claude Code selectively, with attention to effectiveness and cost.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="experience" class="background-alt">
-        <h2 class="heading">Professional Experience</h2>
-        <div id="experience-timeline">
-            <div data-date="April 2024 – Present">
-                <h3>CloudBees</h3>
-                <h4>Software Engineer</h4>
-                <ul>
-                    <li>Moved to a <strong>Go-based SaaS platform</strong> for CI tooling and CD-related capabilities, contributing to a microservices architecture built on <strong>Protobuf and gRPC</strong>, with Kubernetes in the platform stack.</li>
-                    <li>Developed new Jenkins plugins, maintained existing ones, and contributed to open-source projects in the Jenkins ecosystem.</li>
-                    <li>Performed security and compliance checks on plugins and their dependencies, including <strong>FIPS verification</strong> on version upgrades.</li>
-                    <li>Research and implement new features, fix bugs, and investigate customer-reported issues.</li>
-                    <li>Use <strong>Claude Code</strong> during development and create reusable skills for recurring tasks.</li>
-                </ul>
-            </div>
-
-            <div data-date="June 2019 – June 2023">
-                <h3>Oracle</h3>
-                <h4>Software Developer</h4>
-                <ul>
-                    <li><strong>Delivery:</strong> Used AI-assisted tools for feature delivery and unit-test generation, improving sprint velocity by 15% while maintaining 90% code coverage.</li>
-                    <li><strong>Performance:</strong> Improved API performance by approximately 90% through caching.</li>
-                    <li><strong>Stability:</strong> Refactored legacy modules, reducing technical debt, improving system stability by 15%, and reducing Tier-3 support escalations.</li>
-                    <li><strong>Code Quality:</strong> Applied Test-Driven Development (TDD) to improve reliability and reduce debugging effort.</li>
-                    <li><strong>Diagnostics:</strong> Enhanced logging and diagnostics, reducing issue resolution time by 50–70%.</li>
-                </ul>
-            </div>
-
-            <div data-date="June 2018 – May 2019">
-                <h3>Oracle</h3>
-                <h4>Software Intern</h4>
-                <ul>
-                    <li>Worked on defect fixes and bug resolution for enterprise software.</li>
-                </ul>
-            </div>
-
-            <div data-date="August 2015 – August 2017">
-                <h3>Aon Hewitt</h3>
-                <h4>Software Configuration Specialist</h4>
-                <ul>
-                    <li>Designed test plans and scenarios for software changes and tested system modifications before implementation.</li>
-                    <li>Documented defects, tracked resolution progress, and collaborated with developers on timely fixes.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="projects">
-        <h2 class="heading">Projects</h2>
-        <div class="container">
-            <div class="row">
-                <div class="project shadow-large">
-                    <div class="project-image">
-                        <img src="images/project.jpg" alt="Claude Context Manager (cctx)" />
-                    </div>
-                    <div class="project-info">
-                        <h3>Claude Context Manager (cctx)</h3>
-                        <p>
-                            <em>Go, Cobra, Claude Code, Jira (Atlassian MCP), Git</em><br>
-                            A CLI I built and use daily on my own development work to manage per-ticket context files for AI-assisted development.
-                        </p>
-                        <ul>
-                            <li><strong>Workflow:</strong> Auto-detects ticket IDs from git branches and archives a ticket with its related docs in a single command.</li>
-                            <li><strong>Design:</strong> Symlink-based workspace and a JSON config (atomic writes) that links one ticket to multiple repositories. <code>verify --fix</code>, <code>cleanup</code> and <code>--dry-run</code> repair broken links and clear stale data safely.</li>
-                            <li><strong>AI Integration:</strong> Works with Claude Code and the Atlassian (Jira) MCP server to load ticket requirements and log each session automatically, so a ticket never has to be re-explained.</li>
-                            <li><strong>Quality:</strong> Unit and integration tests for the ticket, link, reset and archive flows, a Makefile build pipeline, embedded templates (<code>go:embed</code>) and bash/zsh/fish completions.</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/pankajy-dev/claude-context" target="_blank" class="btn-text">Source on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project shadow-large">
-                    <div class="project-image">
-                        <img src="images/project.jpg" alt="E-commerce Architecture" />
-                    </div>
-                    <div class="project-info">
-                        <h3>E-commerce Microservices Platform</h3>
-                        <p>
-                            <em>Learning project · Java, Spring Boot, MySQL, Redis, Kafka, Eureka</em><br>
-                            An e-commerce backend with product, payment, authentication/token generation, notification, API gateway, and service discovery components.
-                        </p>
-                        <ul>
-                            <li><strong>Performance:</strong> Improved product service performance by approximately 90% using <strong>Redis</strong> caching.</li>
-                            <li><strong>Event-Driven:</strong> Integrated <strong>Apache Kafka</strong> for event-driven notification processing.</li>
-                        </ul>
-
-                        <div class="project-links">
-                            <p><strong>Core Repositories:</strong></p>
-                            <a href="https://github.com/pankaj-codes/ProductService" target="_blank" class="btn-text">Product Service</a> |
-                            <a href="https://github.com/pankaj-codes/UserService" target="_blank" class="btn-text">User Service</a> |
-                            <a href="https://github.com/pankaj-codes/PaymentService" target="_blank" class="btn-text">Payment Service</a> |
-                            <a href="https://github.com/pankaj-codes/ApiGateway" target="_blank" class="btn-text">API Gateway</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="skills" class="background-alt">
-        <h2 class="heading">Technical Skills</h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Languages</h3>
-                    <p>Go, Java, Python, SQL, JavaScript</p>
-                    <h3>Core Java &amp; Design</h3>
-                    <p>OOP, SOLID, Design Patterns, Multithreading, Concurrency, JVM fundamentals</p>
-                    <h3>Backend &amp; APIs</h3>
-                    <p>Microservices, REST, Spring Boot, Hibernate, gRPC, Protobuf, Maven</p>
-                    <h3>CI/CD &amp; Cloud-Native</h3>
-                    <p>Jenkins, GitHub Actions, Docker, Kubernetes, Helm, OCI, Git</p>
-                </div>
-                <div class="col-md-6">
-                    <h3>Data &amp; Messaging</h3>
-                    <p>Redis, Apache Kafka, MySQL</p>
-                    <h3>Testing &amp; Code Quality</h3>
-                    <p>JUnit 5, Mockito, SonarQube, TDD</p>
-                    <h3>Security &amp; Compliance</h3>
-                    <p>FIPS verification, dependency security assessment</p>
-                    <h3>AI-Assisted Development</h3>
-                    <p>Claude Code, reusable skills and workflows for recurring engineering tasks; built <strong>cctx</strong>, a Go CLI for per-ticket Claude Code context</p>
-                    <h3>Machine Learning (Foundational)</h3>
-                    <p>Supervised learning, linear regression, model evaluation</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Certifications</h3>
-                    <ul>
-                        <li>Certified Kubernetes Application Developer (CKAD)</li>
-                        <li>Oracle Cloud Infrastructure Architect Associate</li>
-                        <li>Oracle Cloud Infrastructure Developer Associate</li>
-                        <li>Oracle Cloud Infrastructure Foundations Associate</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="education">
-        <h2 class="heading">Education</h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Master of Engineering, Software Engineering</h3>
-                    <p>Thapar Institute of Engineering and Technology, Patiala, Punjab<br>August 2017 – May 2019</p>
-                </div>
-                <div class="col-md-6">
-                    <h3>B.Tech, Computer Science and Engineering</h3>
-                    <p>Krishna Engineering College, Ghaziabad, Uttar Pradesh<br>May 2011 – July 2015</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="contact">
-        <h2>Get in Touch</h2>
-        <p><a href="mailto:yadavpankaj28@gmail.com">yadavpankaj28@gmail.com</a> | <a href="tel:+919910897943">+91-9910897943</a></p>
-        <div id="contact-form">
-            <form method="POST" action="https://formspree.io/f/xgegjqjb">
-                <input type="email" name="_replyto" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Message" required></textarea>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5 copyright">
-                    <p>Copyright &copy; <span id="current-year">2026</span> Pankaj Yadav</p>
-                </div>
-                <div class="col-sm-2 top">
-                    <span id="to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
-                </div>
-                <div class="col-sm-5 social">
-                    <ul>
-                        <li><a href="https://github.com/pankajy-dev" target="_blank"><i class="fa fa-github"></i></a></li>
-                        <li><a href="https://www.linkedin.com/in/pankajy-dev/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.min.js"></script>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+  </footer>
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }));
+  </script>
 </body>
 </html>
