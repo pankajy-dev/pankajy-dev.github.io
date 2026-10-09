@@ -114,6 +114,27 @@
             <div class="row">
                 <div class="project shadow-large">
                     <div class="project-image">
+                        <img src="images/project.jpg" alt="Claude Context Manager (cctx)" />
+                        </div>
+                    <div class="project-info">
+                        <h3>Claude Context Manager (cctx)</h3>
+                        <p>
+                            <em>Go, Cobra, Claude Code, Jira (Atlassian MCP), Git</em><br>
+                            A CLI I built and use daily on my own development work to manage per-ticket context files for AI-assisted development.
+                        </p>
+                        <ul>
+                            <li><strong>Workflow:</strong> Auto-detects ticket IDs from git branches and archives a ticket with its related docs in a single command.</li>
+                            <li><strong>Design:</strong> Symlink-based workspace and a JSON config (atomic writes) that links one ticket to multiple repositories. <code>verify --fix</code>, <code>cleanup</code> and <code>--dry-run</code> repair broken links and clear stale data safely.</li>
+                            <li><strong>AI Integration:</strong> Works with Claude Code and the Atlassian (Jira) MCP server to load ticket requirements and log each session automatically, so a ticket never has to be re-explained.</li>
+                            <li><strong>Quality:</strong> Unit and integration tests for the ticket, link, reset and archive flows, a Makefile build pipeline, embedded templates (<code>go:embed</code>) and bash/zsh/fish completions.</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/pankajy-dev/claude-context" target="_blank" class="btn-text">Source on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project shadow-large">
+                    <div class="project-image">
                         <img src="images/project.jpg" alt="E-commerce Architecture" />
                     </div>
                     <div class="project-info">
@@ -162,7 +183,7 @@
                     <h3>Security &amp; Compliance</h3>
                     <p>FIPS verification, dependency security assessment</p>
                     <h3>AI-Assisted Development</h3>
-                    <p>Claude Code, reusable skills and workflows for recurring engineering tasks</p>
+                    <p>Claude Code, reusable skills and workflows for recurring engineering tasks; built <strong>cctx</strong>, a Go CLI for per-ticket Claude Code context</p>
                     <h3>Machine Learning (Foundational)</h3>
                     <p>Supervised learning, linear regression, model evaluation</p>
                 </div>
