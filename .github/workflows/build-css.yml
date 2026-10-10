@@ -1,0 +1,27 @@
+name: Build CSS
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build CSS
+        run: npm run build:css
