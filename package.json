@@ -5,12 +5,11 @@
   "main": "js/scripts.js",
   "scripts": {
     "build:css": "sass src/scss/styles.scss css/styles.css",
-    "watch:css": "watch 'npm run build:css' src/scss",
-    "start": "concurrently \"npm run watch:css\""
+    "watch:css": "sass --watch src/scss/styles.scss css/styles.css",
+    "start": "npm run watch:css"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "sass": "^1.77.4",
-    "watch": "^1.0.2"
+    "concurrently": "^10.0.5",
+    "sass": "^1.77.4"
   }
 }
