@@ -9,6 +9,6 @@
     "start": "npm run watch:css"
   },
   "devDependencies": {
-    "sass": "^1.77.4"
+    "sass": "^1.105.1"
   }
 }
