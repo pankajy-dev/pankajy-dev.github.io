@@ -84,6 +84,29 @@ npm run start
 - `watch:css` watches SCSS files for changes and rebuilds automatically.
 - `start` runs the watch process for local development.
 
+## Dependency Management
+
+Use the following steps to review and update project dependencies safely:
+
+```bash
+# install or refresh dependencies
+npm install
+
+# check for outdated packages
+npm outdated
+
+# update direct dependencies to the latest compatible versions
+npm update
+
+# or update a specific package if needed
+npm install sass@latest
+
+# run security checks
+npm audit
+```
+
+This project also uses GitHub Dependabot for automated dependency updates. Dependabot is configured in `.github/dependabot.yml` and checks the root npm dependency set on a weekly schedule.
+
 ## Deployment
 
 This project is configured for GitHub Pages. The repository is published from the `main` branch, making it easy to update and deploy changes directly to the live portfolio site.
